@@ -1,0 +1,63 @@
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local secrets and machine-specific configuration
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+audio-settings.json
+*.pfx
+*.p12
+*.key
+
+# User recordings and runtime data
+*.wav
+*.mp3
+bank-*/
+clips/
+logs/
+*.log
+service-out.log
+service-err.log
+
+# Node/TypeScript dependencies and caches
+node_modules/
+plugin/node_modules/
+*.tsbuildinfo
+.npm/
+.eslintcache
+coverage/
+
+# .NET build and publish output
+audio-service/**/bin/
+audio-service/**/obj/
+audio-service/publish/
+audio-service/publish-new/
+TestResults/
+*.pdb
+*.nupkg
+*.snupkg
+
+# PowerShell and installer artifacts
+*.lnk
+*.streamDeckPlugin
+
+# Keep the compiled Stream Deck JavaScript bundle used by install.ps1.
+!plugin/com.noble.sampler.sdPlugin/bin/
+!plugin/com.noble.sampler.sdPlugin/bin/plugin.js
+!plugin/com.noble.sampler.sdPlugin/bin/plugin.js.map

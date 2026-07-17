@@ -1,0 +1,3 @@
+Copyright (c) 2026 Noble
+
+Permission is granted to use, modify, and distribute this software for personal and community use. The software is provided "as is", without warranty of any kind.

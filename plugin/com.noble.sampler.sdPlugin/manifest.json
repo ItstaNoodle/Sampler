@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.elgato.com/streamdeck/plugins/manifest.json",
+  "Actions": [
+    {
+      "Name": "Sampler Slot",
+      "UUID": "com.noble.sampler.sample",
+      "Icon": "imgs/actions/sample",
+      "PropertyInspectorPath": "ui/sampler.html",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "imgs/actions/sample", "TitleAlignment": "middle", "FontSize": "14" }]
+    },
+    {
+      "Name": "Sampler Bank",
+      "UUID": "com.noble.sampler.bank",
+      "Icon": "imgs/actions/bank",
+      "PropertyInspectorPath": "ui/bank.html",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "imgs/actions/bank", "TitleAlignment": "middle", "FontSize": "15" }]
+    },
+    {
+      "Name": "Stop Playback",
+      "UUID": "com.noble.sampler.stop",
+      "Icon": "imgs/actions/stop",
+      "Controllers": ["Keypad"],
+      "States": [{ "Image": "imgs/actions/stop", "Title": "STOP", "TitleAlignment": "middle", "FontSize": "16" }]
+    }
+  ],
+  "Author": "Noble",
+  "Category": "Noble Sampler",
+  "CategoryIcon": "imgs/category",
+  "CodePath": "bin/plugin.js",
+  "Description": "Four-bank Stream Deck audio sampler with rolling system-audio capture and hold-to-record controls.",
+  "Icon": "imgs/plugin",
+  "Name": "Noble Sampler",
+  "Nodejs": { "Version": "24" },
+  "OS": [{ "Platform": "windows", "MinimumVersion": "10" }],
+  "UUID": "com.noble.sampler",
+  "Version": "0.1.0.0",
+  "SDKVersion": 3,
+  "Software": { "MinimumVersion": "7.1" }
+}

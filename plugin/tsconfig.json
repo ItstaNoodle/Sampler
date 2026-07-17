@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "useDefineForClassFields": false,
+    "skipLibCheck": true,
+    "outDir": "./com.noble.sampler.sdPlugin/bin"
+  },
+  "include": ["src/**/*.ts"]
+}
