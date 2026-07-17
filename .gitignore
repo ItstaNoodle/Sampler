@@ -48,6 +48,7 @@ audio-service/**/bin/
 audio-service/**/obj/
 audio-service/publish/
 audio-service/publish-new/
+plugin/com.noble.sampler.sdPlugin/service/NobleSampler.AudioService.exe
 TestResults/
 *.pdb
 *.nupkg

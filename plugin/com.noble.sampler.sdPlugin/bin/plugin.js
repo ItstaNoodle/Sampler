@@ -13,6 +13,8 @@ import fs, { existsSync, readFileSync } from 'node:fs';
 import path, { join } from 'node:path';
 import { cwd } from 'node:process';
 import { randomUUID } from 'node:crypto';
+import { spawn } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 /**
  * Default language supported by all i18n providers.
@@ -9378,8 +9380,45 @@ let StopAction = (() => {
     return _classThis;
 })();
 
+const STATUS_URL = 'http://127.0.0.1:17891/api/status';
+let child;
+async function isRunning() {
+    try {
+        const response = await fetch(STATUS_URL, { signal: AbortSignal.timeout(750) });
+        return response.ok;
+    }
+    catch {
+        return false;
+    }
+}
+async function ensureAudioService() {
+    if (await isRunning())
+        return;
+    const pluginRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+    const executable = path.join(pluginRoot, 'service', 'NobleSampler.AudioService.exe');
+    child = spawn(executable, [], {
+        cwd: path.dirname(executable),
+        windowsHide: true,
+        stdio: 'ignore'
+    });
+    child.once('error', error => console.error(`Unable to start Noble Sampler audio service: ${String(error)}`));
+    process.once('exit', () => child?.kill());
+    for (let attempt = 0; attempt < 20; attempt++) {
+        await new Promise(resolve => setTimeout(resolve, 250));
+        if (await isRunning())
+            return;
+    }
+    throw new Error('Noble Sampler audio service did not become ready.');
+}
+
 streamDeck.actions.registerAction(new SamplerAction());
 streamDeck.actions.registerAction(new BankAction());
 streamDeck.actions.registerAction(new StopAction());
+try {
+    await ensureAudioService();
+}
+catch (error) {
+    streamDeck.logger.error(String(error));
+}
 streamDeck.connect();
 //# sourceMappingURL=plugin.js.map

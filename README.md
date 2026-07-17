@@ -20,28 +20,14 @@ Windows-first Stream Deck sampler inspired by the GoXLR sampler.
 
 - Windows 10 or newer
 - Stream Deck 7.1 or newer
-- .NET 8 SDK for the first build
-- Node.js is only required when editing/rebuilding the plugin source
 
 ## Installation
 
-1. Install the .NET 8 SDK from Microsoft.
-2. Close Stream Deck completely from the system tray.
-3. Right-click `install.ps1` and select **Run with PowerShell**.
-4. Reopen Stream Deck.
-5. Add **Sampler Slot**, **Sampler Bank**, and **Stop Playback** actions from the Noble Sampler category.
+1. Download `com.noble.sampler.streamDeckPlugin` from the latest GitHub release.
+2. Double-click the downloaded file and approve installation in Stream Deck.
+3. Add **Sampler Slot**, **Sampler Bank**, and **Stop Playback** actions from the Noble Sampler category.
 
-If PowerShell blocks the script, run this command once in PowerShell:
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Then run:
-
-```powershell
-.\install.ps1
-```
+The bundled audio service starts automatically with the plugin. No PowerShell script or separate .NET installation is required.
 
 ## Recommended 15-key layout
 
@@ -66,6 +52,8 @@ The first version plays samples to the Windows default output device. To send sa
 
 ## Development
 
+Building from source requires Node.js 24 or newer and the .NET 8 SDK.
+
 Rebuild the plugin:
 
 ```powershell
@@ -84,8 +72,6 @@ The local audio API listens only on `127.0.0.1:17891`.
 
 ## Current MVP limitations
 
-- Captures the Windows default playback endpoint only.
-- Plays to the Windows default output endpoint only.
 - No waveform trimming/editor yet.
 - No microphone/system-audio mixing yet.
 - No automatic clip-name extraction.
