@@ -68,6 +68,12 @@ Build the audio service:
 .\audio-service\publish.ps1
 ```
 
+Create the double-click Stream Deck installer package:
+
+```powershell
+.\package.ps1
+```
+
 The local audio API listens only on `127.0.0.1:17891`.
 
 ## Current MVP limitations

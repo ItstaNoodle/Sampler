@@ -56,7 +56,9 @@ TestResults/
 
 # PowerShell and installer artifacts
 *.lnk
+# Release packages are intentionally committed so users can install by double-clicking.
 *.streamDeckPlugin
+!com.noble.sampler.streamDeckPlugin
 
 # Keep the compiled Stream Deck JavaScript bundle used by install.ps1.
 !plugin/com.noble.sampler.sdPlugin/bin/
