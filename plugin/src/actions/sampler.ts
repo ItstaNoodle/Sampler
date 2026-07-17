@@ -6,7 +6,7 @@ const service = new SamplerServiceClient();
 type HoldState = { timer: ReturnType<typeof setTimeout>; recording: boolean; bank: number; slot: number; settings: SamplerSettings };
 const holds = new Map<string, HoldState>();
 
-@action({ UUID: 'com.noble.sampler.sample' })
+@action({ UUID: 'nobles.sampler.sample' })
 export class SamplerAction extends SingletonAction<SamplerSettings> {
   override async onWillAppear(ev: WillAppearEvent<SamplerSettings>): Promise<void> {
     const settings = normalize(ev.payload.settings);

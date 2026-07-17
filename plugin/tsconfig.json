@@ -6,7 +6,7 @@
     "strict": true,
     "useDefineForClassFields": false,
     "skipLibCheck": true,
-    "outDir": "./com.noble.sampler.sdPlugin/bin"
+    "outDir": "./nobles.sampler.sdPlugin/bin"
   },
   "include": ["src/**/*.ts"]
 }

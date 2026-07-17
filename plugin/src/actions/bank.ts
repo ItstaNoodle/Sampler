@@ -3,7 +3,7 @@ import { getBank, setBank, trackBank, untrackBank } from '../state.js';
 
 type BankSettings = { direction?: 'next' | 'previous'; bank?: number };
 
-@action({ UUID: 'com.noble.sampler.bank' })
+@action({ UUID: 'nobles.sampler.bank' })
 export class BankAction extends SingletonAction<BankSettings> {
   override async onWillAppear(ev: WillAppearEvent<BankSettings>): Promise<void> {
     trackBank(ev.action.id, ev.action as KeyAction);

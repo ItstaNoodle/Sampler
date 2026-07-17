@@ -48,7 +48,7 @@ audio-service/**/bin/
 audio-service/**/obj/
 audio-service/publish/
 audio-service/publish-new/
-plugin/com.noble.sampler.sdPlugin/service/NobleSampler.AudioService.exe
+plugin/nobles.sampler.sdPlugin/service/NobleSampler.AudioService.exe
 TestResults/
 *.pdb
 *.nupkg
@@ -58,9 +58,9 @@ TestResults/
 *.lnk
 # Release packages are intentionally committed so users can install by double-clicking.
 *.streamDeckPlugin
-!com.noble.sampler.streamDeckPlugin
+!nobles.sampler.streamDeckPlugin
 
-# Keep the compiled Stream Deck JavaScript bundle used by install.ps1.
-!plugin/com.noble.sampler.sdPlugin/bin/
-!plugin/com.noble.sampler.sdPlugin/bin/plugin.js
-!plugin/com.noble.sampler.sdPlugin/bin/plugin.js.map
+# Keep the compiled Stream Deck JavaScript bundle used by the packaged plugin.
+!plugin/nobles.sampler.sdPlugin/bin/
+!plugin/nobles.sampler.sdPlugin/bin/plugin.js
+!plugin/nobles.sampler.sdPlugin/bin/plugin.js.map

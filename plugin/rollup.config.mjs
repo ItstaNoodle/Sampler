@@ -5,7 +5,7 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: 'src/plugin.ts',
   output: {
-    file: 'com.noble.sampler.sdPlugin/bin/plugin.js',
+    file: 'nobles.sampler.sdPlugin/bin/plugin.js',
     format: 'esm',
     sourcemap: true
   },

@@ -1,5 +1,0 @@
-logs/
-*.log
-*.pdb
-*.map
-appsettings*.json

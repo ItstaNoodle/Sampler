@@ -1,12 +1,11 @@
 $ErrorActionPreference = 'Stop'
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$pluginSource = Join-Path $root 'plugin\com.noble.sampler.sdPlugin'
+$pluginSource = Join-Path $root 'plugin\nobles.sampler.sdPlugin'
 $serviceSource = Join-Path $root 'audio-service\publish'
-$packagePath = Join-Path $root 'com.noble.sampler.streamDeckPlugin'
+$packagePath = Join-Path $root 'nobles.sampler.streamDeckPlugin'
 $stagingRoot = Join-Path $env:TEMP ('NobleSampler-package-' + [guid]::NewGuid().ToString('N'))
-$stagedPlugin = Join-Path $stagingRoot 'com.noble.sampler.sdPlugin'
-$zipPath = Join-Path $stagingRoot 'com.noble.sampler.zip'
+$stagedPlugin = Join-Path $stagingRoot 'nobles.sampler.sdPlugin'
 
 try {
     if (-not (Test-Path (Join-Path $serviceSource 'NobleSampler.AudioService.exe'))) {
@@ -22,13 +21,27 @@ try {
     }
 
     New-Item -ItemType Directory -Force -Path $stagedPlugin | Out-Null
-    foreach ($item in @('manifest.json', 'bin', 'imgs', 'ui')) {
+    foreach ($item in @('manifest.json', '.sdignore', 'bin', 'imgs', 'ui')) {
         Copy-Item (Join-Path $pluginSource $item) $stagedPlugin -Recurse -Force
     }
     Copy-Item $serviceSource (Join-Path $stagedPlugin 'service') -Recurse -Force
 
-    Compress-Archive -Path $stagedPlugin -DestinationPath $zipPath -CompressionLevel Optimal
-    Copy-Item $zipPath $packagePath -Force
+    $streamDeckCli = Get-Command 'streamdeck.cmd' -ErrorAction SilentlyContinue
+    if (-not $streamDeckCli) {
+        throw 'The Stream Deck CLI is required. Install it with: npm install -g @elgato/cli'
+    }
+
+    & $streamDeckCli.Source pack $stagedPlugin --output $stagingRoot --force --no-update-check
+    if ($LASTEXITCODE -ne 0) {
+        throw "Stream Deck package validation failed with exit code $LASTEXITCODE."
+    }
+
+    $packedPlugin = Get-ChildItem $stagingRoot -Filter '*.streamDeckPlugin' -File |
+        Select-Object -First 1
+    if (-not $packedPlugin) {
+        throw 'Stream Deck CLI did not produce a .streamDeckPlugin file.'
+    }
+    Copy-Item $packedPlugin.FullName $packagePath -Force
 
     $sizeMb = [math]::Round((Get-Item $packagePath).Length / 1MB, 1)
     Write-Host "Created $packagePath ($sizeMb MB)" -ForegroundColor Green

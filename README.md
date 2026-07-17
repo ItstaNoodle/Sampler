@@ -23,7 +23,7 @@ Windows-first Stream Deck sampler inspired by the GoXLR sampler.
 
 ## Installation
 
-1. Download `com.noble.sampler.streamDeckPlugin` from the latest GitHub release.
+1. Download `nobles.sampler.streamDeckPlugin` from the latest GitHub release.
 2. Double-click the downloaded file and approve installation in Stream Deck.
 3. Add **Sampler Slot**, **Sampler Bank**, and **Stop Playback** actions from the Noble Sampler category.
 
